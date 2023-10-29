@@ -6,8 +6,12 @@ import helmet from "helmet";
 import { exampleRoute } from "./routes/exampleRoute";
 import { verifyToken } from "./middlewares/verifyToken";
 import { notFound, errorHandler } from "./middlewares/errors";
+import { connectDB } from "../config/database";
+
 
 dotenv.config();
+
+// connectDB();
 
 const app: Express = express();
 const PORT = process.env.PORT || 3001;

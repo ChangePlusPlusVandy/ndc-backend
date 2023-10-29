@@ -1,9 +1,6 @@
-# Local metadata files
-.DS_Store
 .vscode
-
-# Node packages
-node_modules
-
-.env
+.DS_Store
+*/node_modules/
+*.env
+/express-auth-template/config/serviceAccountKey.json
 
