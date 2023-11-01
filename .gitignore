@@ -4,3 +4,4 @@
 *.env
 /express-auth-template/config/serviceAccountKey.json
 
+node_modules
