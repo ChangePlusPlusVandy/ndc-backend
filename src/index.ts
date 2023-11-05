@@ -11,7 +11,7 @@ import { connectDB } from "../config/database";
 
 dotenv.config();
 
-// connectDB();
+connectDB();
 
 const app: Express = express();
 const PORT = process.env.PORT || 3001;
@@ -28,6 +28,7 @@ app.use(helmet());
  * Use the verifyToken to protect all the routes that require authentication
  */
 app.use("/example", verifyToken, exampleRoute);
+app.use("/inventory", require("./routes/inventoryRouter.ts"));
 
 // Default route: Unprotected
 app.get("/", (_req: Request, res: Response) => {
