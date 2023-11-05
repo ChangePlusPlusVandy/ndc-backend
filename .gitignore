@@ -1,6 +1,7 @@
 .vscode
 .DS_Store
-*/node_modules/
-*.env
-/express-auth-template/config/serviceAccountKey.json
+node_modules
+.env
+config/serviceAccountKey.json
+
 
