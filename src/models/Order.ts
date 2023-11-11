@@ -1,13 +1,13 @@
-import {Types, Schema, model} from 'mongoose'; 
+const mongoose = require('mongoose'); 
 
-const OrderSchema = new Schema({
+const OrderSchema = new mongoose.Schema({
     id: {
-        type: Types.ObjectId, 
+        type: mongoose.Types.ObjectId, 
         unique: true,
         required: true, 
     }, 
     partner: {
-        type: Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "Partner", 
         required: true,
     }, 
@@ -53,5 +53,5 @@ const OrderSchema = new Schema({
     },
 }); 
 
-module.exports = model("Order", OrderSchema); 
+module.exports = mongoose.model("Order", OrderSchema); 
 
