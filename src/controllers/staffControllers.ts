@@ -5,30 +5,13 @@ import { type Request, type Response } from "express";
 
 const createStaff = async (req: Request, res: Response) => {
     try {
-        const { firstName, lastName, phoneNumber, email, dateJoined } =
+        const { id, firstName, lastName, phoneNumber, email, dateJoined } =
             req.body;
 
-        if (!(firstName && lastName && phoneNumber && email && dateJoined)) {
-            return res.status(400).send({ message: "Missing Required Field" });
-        }
+        const newStaff = new Staff({...req.body});
+        await newStaff.save();
 
-        const databaseId = await Staff.find()
-            .sort({ id: -1 })
-            .limit(1)
-            .then((docs: any) => {
-                return docs[0].get("id");
-            })
-            .catch((err: any) => {
-                console.log(err);
-            });
-
-        const newStaff = new Staff({
-            ...req.body,
-            objectId: new ObjectId(databaseId + 1),
-        });
-        const staff = await newStaff.save();
-
-        return res.status(200).json(staff);
+        return res.status(200).json(newStaff);
     } catch (err: any) {
         console.error(err.message);
         return res.status(400).send({ message: err.message });
@@ -39,11 +22,12 @@ const getStaff = async (req: Request, res: Response) => {
     try {
         const id = req.query?.id;
         if (id) {
-            const staff = await Staff.findById(id);
+            const staff = await Staff.findById(id).exec();
             return res.status(200).json(staff);
         }
-        console.log("No Staff ID Detected");
+        console.log("No Staff ID Found");
 
+        // gets all staff
         const staff = await Staff.find();
         return res.status(200).json(staff);
     } catch (err: any) {
