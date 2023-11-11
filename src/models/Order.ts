@@ -1,13 +1,13 @@
-const mongoose = require('mongoose'); 
+import {Schema, Types, model} from 'mongoose'; 
 
-const OrderSchema = new mongoose.Schema({
+const OrderSchema = new Schema({
     id: {
-        type: mongoose.Types.ObjectId, 
+        type: Types.ObjectId, 
         unique: true,
         required: true, 
     }, 
     partner: {
-        type: mongoose.Types.ObjectId,
+        type: Types.ObjectId,
         ref: "Partner", 
         required: true,
     }, 
@@ -22,7 +22,7 @@ const OrderSchema = new mongoose.Schema({
     }, 
     status: {
         type: String, 
-        note: "enum with options: PLACED, OPEN, FILLED, CANCELLED",
+        enum:["PLACED", "OPEN", "FILLED", "CANCELLED"],
         default: "PLACED",
         required: true, 
     }, 
@@ -53,5 +53,5 @@ const OrderSchema = new mongoose.Schema({
     },
 }); 
 
-module.exports = mongoose.model("Order", OrderSchema); 
+module.exports = model("Order", OrderSchema); 
 
