@@ -1,12 +1,18 @@
 import express, { Request, Response } from "express";
 // const { ObjectId } = require("mongoose").Types; 
+const Inventory = require("../models/Inventory.js");
 
-const getInventory = (req: Request, res: Response) => {
-    res.status(200).send("Get Inventory");
+const getInventory = async (req: Request, res: Response) => {
+    try {
+        const data = await Inventory.find();
+        res.json(data);
+    } catch (error: any) {
+        res.status(500).json({message: error.message});
+    }
 }
 
 const setInventory = (req: Request, res: Response) => {
-    res.status(200).send("Edit Inventory");
+    
 }
 
 module.exports = { 
