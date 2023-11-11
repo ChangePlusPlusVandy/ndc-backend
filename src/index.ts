@@ -12,7 +12,7 @@ import { connectDB } from "../config/database";
 
 dotenv.config();
 
-// connectDB();
+connectDB();
 
 const app: Express = express();
 const PORT = process.env.PORT || 3001;
