@@ -21,13 +21,12 @@ const PartnerSchema = new Schema ({
     },
     type: {
         type: String,
-        enum: {
-            Community: "COMMUNITY",
-            Clinic: "CLINIC",
-            Dfd: "DFD",
-            School: "SCHOOL",
-
-        },
+        enum: [
+            'COMMUNITY',
+            'CLINIC',
+            'DFD',
+            'SCHOOL',
+        ],
         required: true,
     },
     phoneNumber: {
@@ -66,4 +65,4 @@ const PartnerSchema = new Schema ({
     },
 })
 
-module.exports = mongoose.model ("Partner", PartnerSchema, "partners");
+module.exports = mongoose.model("Partner", PartnerSchema);
