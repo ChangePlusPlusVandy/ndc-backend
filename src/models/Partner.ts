@@ -3,51 +3,66 @@ import { ObjectId } from "mongodb";
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const PartnerSchema = new Schema({
-    orders: {
-        type: Array,
-        required: true
+const PartnerSchema = new Schema ({
+    id: {
+        type: ObjectId,
     },
+    orders: [{
+        type: Schema.Types.ObjectID,
+        ref: "Order",
+    }],
     firstName: {
         type: String,
-        required: true
+        required: true,
     },
     lastName: {
         type: String,
-        require: true
+        required: true,
     },
     type: {
         type: String,
+        enum: [
+            'COMMUNITY',
+            'CLINIC',
+            'DFD',
+            'SCHOOL',
+        ],
         required: true,
     },
     phoneNumber: {
-        type: Number,
+        type: String,
         required: true,
     },
     email: {
-        type: String
+        type: String,
+        required: true,
     },
     dateJoined: {
-        type: Date
+        type: Date,
     },
     numOrdersMonth: {
-        type: Number
+        type: Number,
+        required: true,
     },
     numOrdersYTD: {
-        type: Number
+        type: Number,
+        required: true,
     },
     numOrdersTotal: {
-        type: Number
+        type: Number,
+        required: true,
     },
     location: {
-        type: String
+        type: String,
+        required: true,
     },
     address: {
-        type: String
+        type: String,
+        required: true,
     },
     deliveryInstructions: {
-        type: String
-    }
-});
+        type: String,
+    },
+})
 
-export default mongoose.model('Partner', PartnerSchema);
+module.exports = mongoose.model("Partner", PartnerSchema);
