@@ -8,6 +8,7 @@ import { exampleRoute } from "./routes/exampleRoute";
 import { verifyToken } from "./middlewares/verifyToken";
 import { notFound, errorHandler } from "./middlewares/errors";
 import { connectDB } from "../config/database";
+import { inventoryRouter } from "./routes/inventoryRouter";
 import { partnerRoute } from "./routes/partnerRoute";
 
 
@@ -33,6 +34,7 @@ app.use("/example", verifyToken, exampleRoute);
 app.use("/staff", verifyToken, staffRouter);
 
 app.use("/partner", verifyToken, partnerRoute);
+app.use("/inventory", inventoryRouter);
 
 // Default route: Unprotected
 app.get("/", (_req: Request, res: Response) => {
