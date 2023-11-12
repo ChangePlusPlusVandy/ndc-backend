@@ -8,6 +8,7 @@ import { exampleRoute } from "./routes/exampleRoute";
 import { verifyToken } from "./middlewares/verifyToken";
 import { notFound, errorHandler } from "./middlewares/errors";
 import { connectDB } from "../config/database";
+import { partnerRoute } from "./routes/partnerRoute";
 
 
 dotenv.config();
@@ -30,6 +31,8 @@ app.use(helmet());
  */
 app.use("/example", verifyToken, exampleRoute);
 app.use("/staff", verifyToken, staffRouter);
+
+app.use("/partner", verifyToken, partnerRoute);
 
 // Default route: Unprotected
 app.get("/", (_req: Request, res: Response) => {
