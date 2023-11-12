@@ -5,10 +5,10 @@ const {
     setInventory,
 } = require("../controllers/inventoryControllers.ts");
 
-const router = express.Router(); 
+const inventoryRouter = express.Router(); 
 
 //Declare routes below
-router.get("/", getInventory);
-router.put("/", setInventory);
+inventoryRouter.get("/", getInventory);
+inventoryRouter.put("/", setInventory);
 
-module.exports = router;
+export { inventoryRouter };

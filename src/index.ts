@@ -7,6 +7,7 @@ import { exampleRoute } from "./routes/exampleRoute";
 import { verifyToken } from "./middlewares/verifyToken";
 import { notFound, errorHandler } from "./middlewares/errors";
 import { connectDB } from "../config/database";
+import { inventoryRouter } from "./routes/inventoryRouter";
 
 
 dotenv.config();
@@ -28,7 +29,7 @@ app.use(helmet());
  * Use the verifyToken to protect all the routes that require authentication
  */
 app.use("/example", verifyToken, exampleRoute);
-app.use("/inventory", require("./routes/inventoryRouter.ts"));
+app.use("/inventory", inventoryRouter);
 
 // Default route: Unprotected
 app.get("/", (_req: Request, res: Response) => {
