@@ -1,6 +1,10 @@
 .vscode
 .DS_Store
-node_modules/
-*.env
-config/serviceAccountKey.json
+
+
+node_modules
+.env
+/config/serviceAccountKey.json
+
+
 
