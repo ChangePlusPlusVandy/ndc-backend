@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import Partner from "../models/Partner";
+const Partner = require("../models/Partner.ts");
 
 import { type Request, type Response } from "express";
 
