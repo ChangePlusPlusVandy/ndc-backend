@@ -5,6 +5,8 @@ import morgan from "morgan";
 import helmet from "helmet";
 import { staffRouter } from "./routes/staffRouter";
 import { exampleRoute } from "./routes/exampleRoute";
+import { loginRouter } from "./routes/loginRouter";
+// import { loginRoute } from "./routes/loginRouter";
 import { verifyToken } from "./middlewares/verifyToken";
 import { notFound, errorHandler } from "./middlewares/errors";
 import { connectDB } from "../config/database";
@@ -34,7 +36,9 @@ app.use("/example", verifyToken, exampleRoute);
 app.use("/staff", verifyToken, staffRouter);
 
 app.use("/partner", verifyToken, partnerRoute);
-app.use("/inventory", inventoryRouter);
+app.use("/inventory", verifyToken, inventoryRouter);
+
+app.use("/login", loginRouter)
 
 // Default route: Unprotected
 app.get("/", (_req: Request, res: Response) => {
@@ -48,3 +52,5 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
