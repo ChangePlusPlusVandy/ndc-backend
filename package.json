@@ -4,7 +4,7 @@
   "description": " A basic starter for an express.js with Typescript",
   "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "node dist/src/index.js",
     "build": "tsc",
     "lint": "eslint --ext .ts . --fix",
     "test": "jest",

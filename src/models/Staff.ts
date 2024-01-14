@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const StaffSchema = new Schema({
+    firebaseUid: {
+        type: String,
+        required: true
+    },
     id: {
         type: ObjectId,
     },

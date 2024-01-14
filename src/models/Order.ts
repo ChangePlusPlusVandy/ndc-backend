@@ -1,57 +1,56 @@
-import {Schema, Types, model} from 'mongoose'; 
+import { Schema, Types, model } from 'mongoose';
 
 const OrderSchema = new Schema({
     id: {
-        type: Types.ObjectId, 
+        type: Types.ObjectId,
         unique: true,
-        required: true, 
-    }, 
+        required: true,
+    },
     partner: {
         type: Types.ObjectId,
-        ref: "Partner", 
+        ref: "Partner",
         required: true,
-    }, 
+    },
     datePlaced: {
         type: Date,
-        default: () => Date.now(), 
+        default: () => Date.now(),
         required: true,
-    }, 
+    },
     dateCompleted: {
         type: Date,
-        default: null,  
-    }, 
+        default: null,
+    },
     status: {
-        type: String, 
+        type: String,
         enum: ["PLACED", "OPEN", "FILLED", "CANCELLED"],
         default: "PLACED",
-        required: true, 
-    }, 
+        required: true,
+    },
     numDiapers: {
         type: Number,
-        required: true, 
+        required: true,
     },
     newborn: {
         type: Number,
-    }, 
+    },
     size1: {
         type: Number,
     },
     size2: {
         type: Number,
-    }, 
+    },
     size3: {
-        type: Number, 
-    }, 
+        type: Number,
+    },
     size4: {
-        type: Number, 
+        type: Number,
     },
     size5: {
-        type: Number, 
+        type: Number,
     },
     size6: {
         type: Number,
     },
-}); 
+});
 
-module.exports = model("Order", OrderSchema); 
-
+module.exports = model("Order", OrderSchema);

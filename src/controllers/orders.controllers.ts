@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-const Order = require("../models/Order.ts");
+const Order = require("../models/Order");
 
 const createOrder = async (req: Request, res: Response) => {
     try {

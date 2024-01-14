@@ -3,7 +3,11 @@ import { ObjectId } from "mongodb";
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const PartnerSchema = new Schema ({
+const PartnerSchema = new Schema({
+    firebaseUid: {
+        type: String,
+        required: true,
+    },
     id: {
         type: ObjectId,
     },
@@ -27,7 +31,7 @@ const PartnerSchema = new Schema ({
             'DFD',
             'SCHOOL',
         ],
-        required: true,
+        // required: true,
     },
     phoneNumber: {
         type: String,
@@ -42,23 +46,23 @@ const PartnerSchema = new Schema ({
     },
     numOrdersMonth: {
         type: Number,
-        required: true,
+        // required: true,
     },
     numOrdersYTD: {
         type: Number,
-        required: true,
+        // required: true,
     },
     numOrdersTotal: {
         type: Number,
-        required: true,
+        // required: true,
     },
     location: {
         type: String,
-        required: true,
+        // required: true,
     },
     address: {
         type: String,
-        required: true,
+        // required: true,
     },
     deliveryInstructions: {
         type: String,

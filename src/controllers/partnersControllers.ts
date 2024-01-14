@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-const Partner = require("../models/Partner.ts");
+const Partner = require("../models/Partner");
 
 import { type Request, type Response } from "express";
 
@@ -21,25 +21,25 @@ const createPartner = async (req: Request, res: Response) => {
             deliveryInstructions,
         } = req.body;
 
-        if (
-            !(
-                orders &&
-                firstName &&
-                lastName &&
-                type &&
-                phoneNumber &&
-                email &&
-                dateJoined &&
-                numOrdersMonth &&
-                numOrdersYTD &&
-                numOrdersTotal &&
-                location &&
-                address &&
-                deliveryInstructions
-            )
-        ) {
-            return res.status(400).send({ message: "Missing Required Field" });
-        }
+        // if (
+        //     !(
+        //         orders &&
+        //         firstName &&
+        //         lastName &&
+        //         type &&
+        //         phoneNumber &&
+        //         email &&
+        //         dateJoined &&
+        //         numOrdersMonth &&
+        //         numOrdersYTD &&
+        //         numOrdersTotal &&
+        //         location &&
+        //         address &&
+        //         deliveryInstructions
+        //     )
+        // ) {
+        //     return res.status(400).send({ message: "Missing Required Field" });
+        // }
 
         const databaseId = await Partner.find()
             .sort({ id: -1 })
@@ -71,6 +71,7 @@ const getPartner = async (req: Request, res: Response) => {
             const partner = await Partner.findById(id);
             return res.status(200).json(partner);
         }
+
         console.log("No Partner ID Detected");
 
         const partner = await Partner.find();
@@ -80,6 +81,7 @@ const getPartner = async (req: Request, res: Response) => {
         return res.status(400).send({ message: err.message });
     }
 };
+
 
 const editPartner = async (req: Request, res: Response) => {
     try {

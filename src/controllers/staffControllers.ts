@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import Staff from "../models/Staff";
+const Staff = require("../models/Staff");
 
 import { type Request, type Response } from "express";
 
@@ -8,7 +8,7 @@ const createStaff = async (req: Request, res: Response) => {
         const { id, firstName, lastName, phoneNumber, email, dateJoined } =
             req.body;
 
-        const newStaff = new Staff({...req.body});
+        const newStaff = new Staff({ ...req.body });
         await newStaff.save();
 
         return res.status(200).json(newStaff);

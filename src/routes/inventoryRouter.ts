@@ -1,11 +1,11 @@
 import express, { type Request, type Response } from "express";
 
-const { 
+const {
     getInventory,
     setInventory,
-} = require("../controllers/inventoryControllers.ts");
+} = require("../controllers/inventoryControllers");
 
-const inventoryRouter = express.Router(); 
+const inventoryRouter = express.Router();
 
 //Declare routes below
 inventoryRouter.get("/", getInventory);
