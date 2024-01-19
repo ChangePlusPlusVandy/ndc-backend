@@ -12,6 +12,7 @@ import { notFound, errorHandler } from "./middlewares/errors";
 import { connectDB } from "../config/database";
 import { inventoryRouter } from "./routes/inventoryRouter";
 import { partnerRoute } from "./routes/partnerRoute";
+import { orderRouter } from "./routes/orderRouter";
 
 
 dotenv.config();
@@ -37,6 +38,7 @@ app.use("/staff", verifyToken, staffRouter);
 
 app.use("/partner", verifyToken, partnerRoute);
 app.use("/inventory", verifyToken, inventoryRouter);
+app.use("/order", verifyToken, orderRouter);
 
 app.use("/login", loginRouter)
 
