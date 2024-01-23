@@ -52,5 +52,17 @@ const checkPartner = async (firebaseUid: string) => {
     }
 };
 
+const createPartner = async (req: Request, res: Response) => {
+    try {
+        const newPartner = new Partner({ ...req.body });
+        console.log(newPartner)
+        await newPartner.save();
+        return res.status(200).json(newPartner);
+    } catch (err: any) {
+        console.error(err.message);
+        return res.status(400).send({ message: err.message });
+    }
+};
 
-export { checkStatus };
+
+export { checkStatus, createPartner };
