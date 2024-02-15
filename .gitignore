@@ -5,5 +5,6 @@
 app.yaml
 node_modules
 .env
+/dist
 /config/serviceAccountKey.json
 
