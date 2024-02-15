@@ -20,7 +20,7 @@ const setInventory = async (req: Request, res: Response) => {
             const inventory = await Inventory.findByIdAndUpdate(_id, req.body);
             return res.status(200).json(inventory);
         } else {
-            return res.status(401).send({ message: "Missing Inventory ID" });
+            return res.status(400).send({ message: "Missing Inventory ID" });
         }
     } catch (error: any) {
         return res.status(500).json({ message: error.message });
