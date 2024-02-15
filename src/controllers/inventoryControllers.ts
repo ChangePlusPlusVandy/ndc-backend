@@ -14,13 +14,16 @@ const getInventory = async (req: Request, res: Response) => {
 
 const setInventory = async (req: Request, res: Response) => {
     try {
-        const { _id } = req.body;
+        const inventoryId = ObjectId(req.body.id);
 
-        if (_id) {
-            const inventory = await Inventory.findByIdAndUpdate(_id, req.body);
+        if (inventoryId) {
+            const inventory = await Inventory.updateOne(
+                { id: inventoryId },
+                req.body
+            );
             return res.status(200).json(inventory);
         } else {
-            return res.status(401).send({ message: "Missing Inventory ID" });
+            return res.status(400).send({ message: "Missing Inventory ID" });
         }
     } catch (error: any) {
         return res.status(500).json({ message: error.message });
