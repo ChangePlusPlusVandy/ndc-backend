@@ -1,8 +1,10 @@
 import express, { type Request, type Response } from "express";
+
 const {
     getOrder,
     createOrder,
-    editOrder
+    editOrder, 
+    getAnnualOrders
 } = require("../controllers/ordersControllers");
 
 const orderRouter = express.Router(); // Creates a new router object
@@ -20,5 +22,8 @@ orderRouter.put("/", (req: Request, res: Response) => {
     editOrder(req, res);
 });
 
+orderRouter.get("/annual", (req: Request, res: Response) => {
+    getAnnualOrders(req, res); 
+}); 
 
 export { orderRouter };

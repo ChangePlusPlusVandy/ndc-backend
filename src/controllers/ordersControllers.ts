@@ -35,7 +35,7 @@ const getOrder = async (req: Request, res: Response) => {
         } else if (status) {
             allOrders = await Order.find({ status: status });
         } else {
-            return res.status(400).send("Invalid search query");
+            allOrders = await Order.find({}).populate("partner", "firstName lastName"); 
         }
 
         return res.status(200).json(allOrders);
@@ -66,8 +66,35 @@ const editOrder = async (req: Request, res: Response) => {
     }
 }
 
+const getAnnualOrders = async (req: Request, res: Response) => {
+    console.log("got here at least");
+    try {
+        const orders = await Order.find({status: "FILLED"}); 
+        
+        const ordersByMonth: number[] = new Array(12)
+        for (let i:number = 0; i < 12; i++) {
+            ordersByMonth[i] = 0; 
+        }
+
+        const currYear = new Date().getFullYear(); 
+        
+        orders.forEach((order: typeof Order) => {
+            if (order.dateCompleted.getFullYear() == currYear) {
+                const orderMonth = order.dateCompleted.getMonth(); 
+                ordersByMonth[orderMonth] += order.numDiapers;
+            }
+        })
+
+        return res.status(200).json(ordersByMonth); 
+    } catch (err: any) {
+        console.error(err.message); 
+        return res.status(500).send({ message: err.message }); 
+    }   
+}
+
 module.exports = {
     createOrder,
     getOrder,
     editOrder,
+    getAnnualOrders
 };
