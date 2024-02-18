@@ -47,7 +47,7 @@ const getOrder = async (req: Request, res: Response) => {
 const editOrder = async (req: Request, res: Response) => {
     try {
         const { status, numDiapers, newborn, size1, size2, size3, size4, size5, size6 } = req.body;
-        const { orderId } = req.body.orderId;
+        const { orderId } = req.body;
 
         if (newborn + size1 + size2 + size3 + size4 + size5 + size6 !== numDiapers)
             return res.status(400).send("Invalid. Sum of diaper sizes doesn't match numDiapers");
