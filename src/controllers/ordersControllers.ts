@@ -35,7 +35,7 @@ const getOrder = async (req: Request, res: Response) => {
         } else if (status) {
             allOrders = await Order.find({ status: status });
         } else {
-            return res.status(400).send("Invalid search query");
+            allOrders = await Order.find({}).populate("partner", "firstName lastName"); 
         }
 
         return res.status(200).json(allOrders);
