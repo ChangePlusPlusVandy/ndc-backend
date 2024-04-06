@@ -22,7 +22,15 @@ connectDB();
 const app: Express = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors()); // Allow cross-origin requests (for frontend to communicate with backend on different ports/address)
+const corsOptions = {
+  origin: ['http://localhost:5173', 'https://nashvillediaperconnection.vercel.app'], // Add your frontend origins here
+  credentials: true, // This is important for cookies, authorization headers with HTTPS
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify the methods allowed
+  allowedHeaders: ['Content-Type', 'Authorization'] // Specify the headers allowed
+};
+
+app.use(cors(corsOptions)); // Use the updated CORS configuration
+
 app.use(express.json()); // Parses incoming JSON requests and uts the parsed data in req
 app.use(express.urlencoded({ extended: true })); // Parses incoming requests with urlenconded payloads
 // error handling and better logging
@@ -44,7 +52,7 @@ app.use("/login", loginRouter)
 
 // Default route: Unprotected
 app.get("/", (_req: Request, res: Response) => {
-  res.send("Express + Typescript Auth Server Temp!");
+  res.send("Express + Typescript Auth Server Temp! :)");
 });
 
 // error handling route

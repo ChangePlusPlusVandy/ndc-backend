@@ -23,8 +23,8 @@ const OrderSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ["PLACED", "OPEN", "FILLED", "CANCELLED"],
-        default: "PLACED",
+        enum: ["PLACED", "OPEN", "APPROVED", "FILLED", "CANCELLED"],
+        default: "OPEN",
         required: true,
     },
     numDiapers: {

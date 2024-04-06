@@ -16,6 +16,8 @@ export const verifyToken = async (
       throw new Error("Token not found");
     }
 
+    _res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     // Verifies the token and decodes it to get associated user data
     // and stores it in req.body.user to be accessed by other routes
     const decodeValue = await auth.verifyIdToken(token);
